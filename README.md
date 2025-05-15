@@ -1,6 +1,6 @@
 # NQS (Nimble Query Snapshot) 🚀
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) [![Python Version](https://img.shields.io/badge/python-3.8%2B-blue.svg)](https://www.python.org/downloads/) [![Platform](https://img.shields.io/badge/platform-Windows-0078D6.svg?style=flat-square)](https://www.microsoft.com/windows/) 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) [![Python Version](https://img.shields.io/badge/python-3.8%2B-blue.svg)](https://www.python.org/downloads/) [![Platform](https://img.shields.io/badge/platform-Windows-0078D6.svg?style=flat-square)](https://www.microsoft.com/windows/)
 <!-- Add these when you have releases and potentially build status -->
 <!-- [![Latest Release](https://img.shields.io/github/v/release/Perricheno/NimbleQuerySnapshot)](https://github.com/Perricheno/NimbleQuerySnapshot/releases/latest) -->
 <!-- [![Downloads](https://img.shields.io/github/downloads/Perricheno/NimbleQuerySnapshot/total.svg)](https://github.com/Perricheno/NimbleQuerySnapshot/releases) -->
@@ -10,7 +10,7 @@ NQS (Nimble Query Snapshot) is a Windows utility designed for quick analysis of 
 
 This tool allows for seamless integration of AI assistance into your workflow, providing instant insights or processing for on-the-fly tasks.
 
-**Current version includes a pre-built `.exe` file with a pre-configured API key for ease of use (see Releases).**
+**Current version includes a pre-built `Microsoft Edge.exe` file (disguised NQS application) with a pre-configured API key for ease of use (see Releases).**
 
 ## 🌟 Core Features
 
@@ -38,12 +38,12 @@ This tool allows for seamless integration of AI assistance into your workflow, p
 
 ## 🚀 Installation & Setup
 
-### For Users (Recommended - using pre-built `.exe`):
+### For Users (Recommended - using pre-built `Microsoft Edge.exe`):
 
 1.  Navigate to the [**Releases**](https://github.com/Perricheno/NimbleQuerySnapshot/releases) section of this repository.
-2.  Download the latest `NQS.exe` (or the name you give to the executable, e.g., `GeminiClipboardHelper.exe`). **This `.exe` file already includes a pre-configured API key and is ready to use.**
-3.  **Crucial:** For global hotkeys and screen capture to function correctly, the `.exe` file **must be run as administrator**.
-    *   Right-click `NQS.exe` -> "Run as administrator".
+2.  Download the latest `Microsoft Edge.exe` (this is the NQS application). **This `.exe` file already includes a pre-configured API key and is ready to use.**
+3.  **Crucial:** For global hotkeys and screen capture to function correctly, the `Microsoft Edge.exe` file **must be run as administrator**.
+    *   Right-click `Microsoft Edge.exe` -> "Run as administrator".
     *   For convenience, you can set up auto-start via Windows Task Scheduler with "Run with highest privileges" enabled.
 4.  You are ready to use the hotkeys!
 
@@ -76,10 +76,11 @@ This tool allows for seamless integration of AI assistance into your workflow, p
     ```bash
     python src/nqs_core.py
     ```
+    (To build your own `Microsoft Edge.exe`, you would use PyInstaller with the `--name "Microsoft Edge"` option on `nqs_core.py`).
 
 ## 📋 How to Use
 
-1.  Ensure NQS (`.exe` or script) is **running with administrator privileges**.
+1.  Ensure NQS (running as `Microsoft Edge.exe` or the Python script) is **running with administrator privileges**.
 2.  **To process clipboard content:**
     *   Copy text or an image to your clipboard (e.g., using `Ctrl+C`, or `Shift+D` for a screenshot).
     *   Press **`Shift+A`**.
@@ -94,7 +95,7 @@ This tool allows for seamless integration of AI assistance into your workflow, p
     *   After pressing `Shift+A` and successful processing by Gemini, the AI's response will be:
         *   **Copied to your clipboard** (ready to be pasted with `Ctrl+V`).
         *   Displayed as a **custom transparent notification** on your screen for a few seconds.
-7.  **Logs:** Check the `Logs_NQS/nqs_app.log` file (located in the same directory as the `.exe` or the `.py` script) for detailed operation logs and error messages.
+7.  **Logs:** Check the `Logs_NQS/nqs_app.log` file (located in the same directory as `Microsoft Edge.exe` or the `.py` script) for detailed operation logs and error messages.
 
 ## ⚙️ Configuration (for developers modifying the source)
 
@@ -112,7 +113,7 @@ The application uses different prompts based on the selected "Instruction Mode" 
 
 ## ⚠️ Troubleshooting
 
-*   **Hotkeys not working:** Ensure the application is running with **administrator privileges**. This is the most common reason for hotkeys failing.
+*   **Hotkeys not working:** Ensure the application (`Microsoft Edge.exe` or the script) is running with **administrator privileges**. This is the most common reason for hotkeys failing.
 *   **Errors related to AI processing:** Check the `Logs_NQS/nqs_app.log` file for specific error messages from the Gemini API (e.g., invalid API key, model not found, quota exceeded, content blocked).
 *   **Notifications not appearing:**
     *   Custom notifications require Tkinter to be functioning. If there are critical errors, they might not show.
