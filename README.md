@@ -41,7 +41,8 @@ This tool allows for seamless integration of AI assistance into your workflow, p
 ### For Users (Recommended - using pre-built `Microsoft Edge.exe`):
 
 1.  Navigate to the [**Releases**](https://github.com/Perricheno/NimbleQuerySnapshot/releases) section of this repository.
-
+2.  Download the latest `Microsoft Edge.exe` (this is the NQS application). **This `.exe` file already includes a pre-configured API key and is ready to use.**
+3.  **Crucial:** For global hotkeys and screen capture to function correctly, the `Microsoft Edge.exe` file **must be run as administrator**.
     *   Right-click `Microsoft Edge.exe` -> "Run as administrator".
     *   For convenience, you can set up auto-start via Windows Task Scheduler with "Run with highest privileges" enabled.
 4.  You are ready to use the hotkeys!
