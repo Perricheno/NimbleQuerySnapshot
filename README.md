@@ -2,43 +2,42 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-NQS is a Windows utility designed for quick analysis of selected screen regions or clipboard content using Google's Gemini AI. The analysis result is automatically copied back to the clipboard for immediate use.
+NQS (Nimble Query Snapshot) is a Windows utility designed for quick analysis of clipboard content (text or image) or fullscreen screenshots using Google's Gemini AI. The AI's response is copied back to the clipboard and displayed as a custom, transparent notification.
 
-This project aims to integrate powerful language models directly into the workflow for rapid information retrieval and on-the-fly data processing.
+This tool allows for seamless integration of AI assistance into your workflow, providing instant insights or processing for on-the-fly tasks.
 
-## 🌟 Core Features (Implemented/Planned)
+## 🌟 Core Features
 
-*   **Screen Region Analysis:**
-    *   Activated by a hotkey sequence (`Alt+Q` + Left Click, then `Alt+W` + Left Click).
-    *   "Silent" selection without screen dimming.
-    *   Sends a screenshot of the selected region to Gemini AI for analysis.
-*   **Clipboard Content Analysis:** (Future integration, based on previous helper script)
-    *   Hotkey activated.
-    *   Sends text or images from the clipboard to Gemini AI.
-*   **Powered by Google Gemini AI:** Utilizes Gemini models (e.g., Pro/Flash) for analysis.
-*   **Clipboard Output:** AI response is ready to be pasted immediately.
-*   **System Notifications:** (If implemented in the final version) Alerts for mode changes or operation completion.
-*   **Background Operation:** Designed to run unobtrusively.
-*   **Logging:** Actions and errors are logged for debugging purposes.
+*   **Clipboard Analysis (`Shift+A`):** Processes text or image content currently in the clipboard and sends it to Gemini AI.
+*   **Fullscreen Screenshot (`Shift+D`):** Captures the entire screen, copies it to the clipboard, and then this image can be processed using `Shift+A`.
+*   **AI Model Cycling (`Shift+S`):** Cycles through available Gemini models (e.g., Pro, Flash Preview, Flash Stable) for processing. Notifies via a standard Windows notification.
+*   **Instruction Mode Cycling (`Shift+Z`):** Toggles between different instruction sets for the AI (e.g., "General Task" vs. "Screen Focus Task"). Notifies via a standard Windows notification.
+*   **Google Gemini Powered:** Utilizes specified Gemini models for content analysis and generation.
+*   **Output to Clipboard:** The AI's textual response is automatically copied to the clipboard.
+*   **Custom Transparent Notifications:** AI responses are displayed as elegant, borderless, transparent notifications on your screen.
+*   **Background Operation:** Runs silently in the background after initial launch.
+*   **Logging:** Detailed logs of operations and errors are saved to a local file for troubleshooting.
 
 ## 🛠 Technologies Used
 
 *   Python 3
 *   Google Gemini API (`google-generativeai`)
-*   Pynput (for global hotkeys and mouse event monitoring)
-*   Pillow (PIL Fork) (for screen capture)
-*   PyWin32 (for copying images to the Windows clipboard)
-*   Winotify (for system notifications - if used)
-*   PyInstaller (for packaging into an `.exe`)
+*   `keyboard` (for global hotkeys)
+*   `Pillow` (PIL Fork) (for `ImageGrab.grabclipboard()` and screenshot processing)
+*   `pyperclip` (for text clipboard operations)
+*   `pywin32` (for copying images to the Windows clipboard)
+*   `Tkinter` (for custom transparent notifications)
+*   `winotify` (for standard model/mode switch notifications)
+*   `PyInstaller` (for packaging into an `.exe`)
 
 ## 🚀 Installation
 
 ### For Users (via `.exe`):
 
 1.  Navigate to the [**Releases**](https://github.com/YOUR_GITHUB_USERNAME/NimbleQuerySnapshot/releases) section of this repository.
-2.  Download the latest `NQS.exe` (or a setup file/archive).
-3.  **Important:** For global hotkeys and screen capture to function correctly, the `.exe` file **must be run as administrator**. It's recommended to set up auto-start via Windows Task Scheduler with elevated privileges.
-4.  On first launch, you might need to provide your Google API Key for Gemini (or it might be pre-configured, depending on the release version).
+2.  Download the latest `NQS.exe` (or similar, e.g., `GeminiClipboardHelper.exe` if you used that name during build).
+3.  **Crucial:** For global hotkeys and screen capture to function correctly, the `.exe` file **must be run as administrator**. It's highly recommended to set up auto-start via Windows Task Scheduler with "Run with highest privileges" enabled.
+4.  The Google API Key for Gemini is currently hardcoded into the application. Ensure you are comfortable with this or modify the source if needed.
 
 ### For Developers (from source code):
 
@@ -50,31 +49,58 @@ This project aims to integrate powerful language models directly into the workfl
 2.  Create and activate a virtual environment:
     ```bash
     python -m venv venv
-    .\venv\Scripts\activate 
+    .\venv\Scripts\activate
     ```
-3.  Install dependencies:
+3.  Install dependencies from `requirements.txt`:
     ```bash
     pip install -r requirements.txt
     ```
-4.  You will need a **Google API Key** for Gemini. Store it as an environment variable `GOOGLE_API_KEY` or follow instructions within the code if an alternative configuration method (like a `.env` file or hardcoding for testing) is used.
-5.  Run the main script (e.g., `src/nqs_core.py`):
+4.  The Google API Key is hardcoded in `src/nqs_core.py`. You can modify it there if needed.
+5.  Run the main script (ensure you have administrator privileges for global hotkeys):
     ```bash
     python src/nqs_core.py
     ```
-    *(Debugging might require running from an administrator console).*
 
-## 📋 How to Use (Example for "Silent Snipper" mode)
+## 📋 How to Use
 
-1.  Ensure the NQS application (`.exe` or script) is **running with administrator privileges**.
-2.  To capture a screen region:
-    *   Press **`Alt+Q`**. The script will enter the mode for selecting the first point.
-    *   **Left-click** on one corner of the desired screen area (this is the first point).
-    *   Press **`Alt+W`**. The script will enter the mode for selecting the second point.
-    *   **Left-click** on the opposite corner of the desired screen area (this is the second point).
-3.  The screen region between these two points will be captured and (if AI analysis is implemented) sent to Gemini.
-4.  After a few seconds, the result (e.g., image description or analysis) will be copied to your clipboard.
-5.  Paste (`Ctrl+V`) the result into your desired application.
-6.  Check the `Logs_NQS` folder (or the configured log folder name) next to the executable for operation details and potential errors.
+1.  Ensure NQS (`.exe` or script) is **running with administrator privileges**.
+2.  **To process clipboard content:**
+    *   Copy text or an image to your clipboard (e.g., using `Ctrl+C`, or `Shift+D` for a screenshot).
+    *   Press **`Shift+A`**.
+3.  **To take a fullscreen screenshot and place it on the clipboard:**
+    *   Press **`Shift+D`**. The screenshot is now on your clipboard.
+    *   You can then press **`Shift+A`** to process this screenshot.
+4.  **To change the AI model:**
+    *   Press **`Shift+S`**. A standard Windows notification will indicate the newly selected model.
+5.  **To change the AI instruction mode:**
+    *   Press **`Shift+Z`**. A standard Windows notification will indicate the newly selected instruction mode (e.g., "General Task" or "Screen Focus Task").
+6.  **Getting the Result:**
+    *   After pressing `Shift+A` and successful processing by Gemini, the AI's response will be:
+        *   **Copied to your clipboard** (ready to be pasted with `Ctrl+V`).
+        *   Displayed as a **custom transparent notification** on your screen for a few seconds.
+7.  **Logs:** Check the `Logs_NQS/nqs_app.log` file (located in the same directory as the `.exe` or the `.py` script) for detailed operation logs and error messages.
+
+## ⚙️ Configuration
+
+*   **API Key:** The Google Gemini API key is currently hardcoded in `src/nqs_core.py` (variable `API_KEY_HARDCODED`).
+*   **Hotkeys:** Defined at the top of `src/nqs_core.py`.
+*   **Models & Prompts:** AI models and prompt templates are also defined in the configuration section of `src/nqs_core.py`.
+*   **Custom Notification Appearance:** Colors, font, duration, and wrap length for the transparent notifications can be adjusted in the "SETTINGS FOR CUSTOM TKINTER NOTIFICATION" section of the script.
+
+## 📝 Prompts
+
+The application uses different prompts based on the selected "Instruction Mode" and whether the input is text or an image:
+
+*   **`PROMPT_GENERAL_TEMPLATE`:** Used for general tasks with text or images. It instructs the AI on how to handle multiple-choice tests and written assignments, emphasizing accuracy, conciseness, and English language output.
+*   **`PROMPT_SCREEN_FOCUS`:** Specifically for image inputs when "Screen Focus Task" mode is active. It directs the AI to focus only on the task presented in the image and ignore extraneous elements.
+
+## ⚠️ Troubleshooting
+
+*   **Hotkeys not working:** Ensure the application is running with **administrator privileges**. This is the most common reason for hotkeys failing.
+*   **Errors related to AI processing:** Check the `Logs_NQS/nqs_app.log` file for specific error messages from the Gemini API (e.g., invalid API key, model not found, quota exceeded, content blocked).
+*   **Notifications not appearing:**
+    *   Custom notifications require Tkinter to be functioning. If there are critical errors, they might not show.
+    *   Standard notifications (for model/mode changes) use `winotify`. Ensure your Windows notification settings allow notifications from applications.
 
 ## 📄 License
 
@@ -82,6 +108,5 @@ This project is licensed under the MIT License. See the `LICENSE` file for detai
 
 ## 🙏 Acknowledgements
 
-*   The Python community for excellent libraries.
-*   Google for providing access to Gemini models.
-
+*   The Python community for their invaluable libraries.
+*   Google for providing access to the Gemini AI models.
