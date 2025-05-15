@@ -1,6 +1,10 @@
 # NQS (Nimble Query Snapshot) 🚀
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) [![Python Version](https://img.shields.io/badge/python-3.8%2B-blue.svg)](https://www.python.org/downloads/) [![Platform](https://img.shields.io/badge/platform-Windows-0078D6.svg?style=flat-square)](https://www.microsoft.com/windows/) 
+<!-- Add these when you have releases and potentially build status -->
+<!-- [![Latest Release](https://img.shields.io/github/v/release/Perricheno/NimbleQuerySnapshot)](https://github.com/Perricheno/NimbleQuerySnapshot/releases/latest) -->
+<!-- [![Downloads](https://img.shields.io/github/downloads/Perricheno/NimbleQuerySnapshot/total.svg)](https://github.com/Perricheno/NimbleQuerySnapshot/releases) -->
+<!-- [![Build Status](https://github.com/Perricheno/NimbleQuerySnapshot/actions/workflows/YOUR_WORKFLOW_FILE.yml/badge.svg)](https://github.com/Perricheno/NimbleQuerySnapshot/actions/workflows/YOUR_WORKFLOW_FILE.yml) -->
 
 NQS (Nimble Query Snapshot) is a Windows utility designed for quick analysis of clipboard content (text or image) or fullscreen screenshots using Google's Gemini AI. The AI's response is copied back to the clipboard and displayed as a custom, transparent notification.
 
@@ -36,8 +40,8 @@ This tool allows for seamless integration of AI assistance into your workflow, p
 
 ### For Users (Recommended - using pre-built `.exe`):
 
-1.  Navigate to the [**Releases**](https://github.com/YOUR_GITHUB_USERNAME/NimbleQuerySnapshot/releases) section of this repository.
-2.  Download the latest `microsoft edge.exe` . **This `.exe` file already includes a pre-configured API key and is ready to use.**
+1.  Navigate to the [**Releases**](https://github.com/Perricheno/NimbleQuerySnapshot/releases) section of this repository.
+2.  Download the latest `NQS.exe` (or the name you give to the executable, e.g., `GeminiClipboardHelper.exe`). **This `.exe` file already includes a pre-configured API key and is ready to use.**
 3.  **Crucial:** For global hotkeys and screen capture to function correctly, the `.exe` file **must be run as administrator**.
     *   Right-click `NQS.exe` -> "Run as administrator".
     *   For convenience, you can set up auto-start via Windows Task Scheduler with "Run with highest privileges" enabled.
