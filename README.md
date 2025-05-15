@@ -6,6 +6,8 @@ NQS (Nimble Query Snapshot) is a Windows utility designed for quick analysis of 
 
 This tool allows for seamless integration of AI assistance into your workflow, providing instant insights or processing for on-the-fly tasks.
 
+**Current version includes a pre-built `.exe` file with a pre-configured API key for ease of use (see Releases).**
+
 ## 🌟 Core Features
 
 *   **Clipboard Analysis (`Shift+A`):** Processes text or image content currently in the clipboard and sends it to Gemini AI.
@@ -30,32 +32,42 @@ This tool allows for seamless integration of AI assistance into your workflow, p
 *   `winotify` (for standard model/mode switch notifications)
 *   `PyInstaller` (for packaging into an `.exe`)
 
-## 🚀 Installation
+## 🚀 Installation & Setup
 
-### For Users (via `.exe`):
+### For Users (Recommended - using pre-built `.exe`):
 
 1.  Navigate to the [**Releases**](https://github.com/YOUR_GITHUB_USERNAME/NimbleQuerySnapshot/releases) section of this repository.
-2.  Download the latest `NQS.exe` (or similar, e.g., `GeminiClipboardHelper.exe` if you used that name during build).
-3.  **Crucial:** For global hotkeys and screen capture to function correctly, the `.exe` file **must be run as administrator**. It's highly recommended to set up auto-start via Windows Task Scheduler with "Run with highest privileges" enabled.
-4.  The Google API Key for Gemini is currently hardcoded into the application. Ensure you are comfortable with this or modify the source if needed.
+2.  Download the latest `microsoft edge.exe` . **This `.exe` file already includes a pre-configured API key and is ready to use.**
+3.  **Crucial:** For global hotkeys and screen capture to function correctly, the `.exe` file **must be run as administrator**.
+    *   Right-click `NQS.exe` -> "Run as administrator".
+    *   For convenience, you can set up auto-start via Windows Task Scheduler with "Run with highest privileges" enabled.
+4.  You are ready to use the hotkeys!
 
 ### For Developers (from source code):
 
 1.  Clone the repository:
     ```bash
-    git clone https://github.com/YOUR_GITHUB_USERNAME/NimbleQuerySnapshot.git
+    git clone https://github.com/Perricheno/NimbleQuerySnapshot.git
     cd NimbleQuerySnapshot
     ```
 2.  Create and activate a virtual environment:
     ```bash
     python -m venv venv
-    .\venv\Scripts\activate
+    .\venv\Scripts\activate  
     ```
+    (For PowerShell. For CMD, use `venv\Scripts\activate.bat`)
 3.  Install dependencies from `requirements.txt`:
     ```bash
     pip install -r requirements.txt
     ```
-4.  The Google API Key is hardcoded in `src/nqs_core.py`. You can modify it there if needed.
+4.  **IMPORTANT API KEY SETUP:**
+    *   Open the file `src/nqs_core.py` in a text editor.
+    *   Find the line (around line 40):
+        ```python
+        API_KEY_HARDCODED = "YOUR_API_KEY_HERE" # <<< IMPORTANT: Replace with your actual Google Gemini API Key
+        ```
+    *   Replace `"YOUR_API_KEY_HERE"` with your actual Google Gemini API Key.
+    *   Save the file.
 5.  Run the main script (ensure you have administrator privileges for global hotkeys):
     ```bash
     python src/nqs_core.py
@@ -80,9 +92,9 @@ This tool allows for seamless integration of AI assistance into your workflow, p
         *   Displayed as a **custom transparent notification** on your screen for a few seconds.
 7.  **Logs:** Check the `Logs_NQS/nqs_app.log` file (located in the same directory as the `.exe` or the `.py` script) for detailed operation logs and error messages.
 
-## ⚙️ Configuration
+## ⚙️ Configuration (for developers modifying the source)
 
-*   **API Key:** The Google Gemini API key is currently hardcoded in `src/nqs_core.py` (variable `API_KEY_HARDCODED`).
+*   **API Key:** Stored in the `API_KEY_HARDCODED` variable in `src/nqs_core.py`.
 *   **Hotkeys:** Defined at the top of `src/nqs_core.py`.
 *   **Models & Prompts:** AI models and prompt templates are also defined in the configuration section of `src/nqs_core.py`.
 *   **Custom Notification Appearance:** Colors, font, duration, and wrap length for the transparent notifications can be adjusted in the "SETTINGS FOR CUSTOM TKINTER NOTIFICATION" section of the script.
